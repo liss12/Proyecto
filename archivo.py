@@ -21,9 +21,6 @@ def inicio():
     return render_template('index.html', dict=diccionario)
 '''
 
-
-
-
 @app.route("/tabla")
 def index():
     return render_template('../index.html')
@@ -62,4 +59,5 @@ def test():
         
         return render_template("test.html", dict = diccionario)
 
-app.run(debug=False, port=5000)
+if __name__ == "__main__":
+    app.run(debug=False, port=5000)
