@@ -1,25 +1,27 @@
-import sqlite3
+import psycopg2
+
 
 class DBHelper():
+    DATABASE_URL = 'postgres://xlnuwgypyqaamw:4f2dbb1b6727a40f0c900d91bb3e157d16c6ff5bc033267850dbd88dcbcd303e@ec2-54-247-85-251.eu-west-1.compute.amazonaws.com:5432/d7ol24ubggaeeh'
     def __init__(self):
         pass
     
     def crearTablalogin(self):
-        conn = sqlite3.connect('data.db')
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         c = conn.cursor()
         c.execute("CREATE TABLE login(usuario text, contrasenia text)")
         conn.commit()
         conn.close()
     
     def crearTablaReserva(self):
-        conn = sqlite3.connect('data.db')
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         c = conn.cursor()
         c.execute("CREATE TABLE reserva(id text, usuario text, estado text)")
         conn.commit()
         conn.close()
 
     def insertarlogin(self, _usuario, _contrasenia):
-        conn = sqlite3.connect('data.db')
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         c = conn.cursor()
         c.execute("INSERT INTO login VALUES (?, ?)", [_usuario, _contrasenia])
         conn.commit()
@@ -27,14 +29,14 @@ class DBHelper():
 
     
     def insertarReserva(self, _id, _usuario, _estado):
-        conn = sqlite3.connect('data.db')
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         c = conn.cursor()
         c.execute("INSERT INTO reserva VALUES (?, ?, ?)",[_id, _usuario, _estado])
         conn.commit()
         conn.close()
 
     def leer(self, _id):
-        conn = sqlite3.connect('data.db')
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         c = conn.cursor()
         c.execute("SELECT * FROM reserva where id = ?" , (_id,))
         u = c.fetchone()
@@ -42,7 +44,7 @@ class DBHelper():
         return u
 
     def todos(self):        
-        conn = sqlite3.connect('data.db')
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         c = conn.cursor()
         c.execute("SELECT * FROM reserva")
         u = c.fetchall()
@@ -51,7 +53,7 @@ class DBHelper():
 
     def update(self, _user, _id, _estado):
         print("UPDATING: " +" id:" + _id +",user: "+ _user +",estado:"+ _estado)
-        conn = sqlite3.connect('data.db')
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         c = conn.cursor()
         cadena = "UPDATE reserva SET usuario='"+_user+"', estado='"+_estado+"' WHERE id='"+_id+"'"
         print(cadena)
@@ -60,7 +62,7 @@ class DBHelper():
         conn.close()
 
     def quemada(self):
-        conn = sqlite3.connect('data.db')
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         c = conn.cursor()
         c.execute("DROP TABLE IF EXISTS reserva")
         conn.commit()
@@ -116,53 +118,3 @@ class DBHelper():
         c.execute("INSERT INTO reserva VALUES ('demo48', '', 'Disponible')")
         conn.commit()
         conn.close()
-        '''
-        db.insertarReserva('demo1','','Disponible')
-        db.insertarReserva('demo2','','Disponible')
-        db.insertarReserva('demo3','','Disponible')
-        db.insertarReserva('demo4','','Disponible')
-        db.insertarReserva('demo5','','Disponible')
-        db.insertarReserva('demo6','','Disponible')
-        db.insertarReserva('demo7','','Disponible')
-        db.insertarReserva('demo8','','Disponible')
-        db.insertarReserva('demo9','','Disponible')
-        db.insertarReserva('demo10','','Disponible')
-        db.insertarReserva('demo11','','Disponible')
-        db.insertarReserva('demo12','','Disponible')
-        db.insertarReserva('demo13','','Disponible')
-        db.insertarReserva('demo14','','Disponible')
-        db.insertarReserva('demo15','','Disponible')
-        db.insertarReserva('demo16','','Disponible')
-        db.insertarReserva('demo17','','Disponible')
-        db.insertarReserva('demo18','','Disponible')
-        db.insertarReserva('demo19','','Disponible')
-        db.insertarReserva('demo20','','Disponible')
-        db.insertarReserva('demo21','','Disponible')
-        db.insertarReserva('demo22','','Disponible')
-        db.insertarReserva('demo23','','Disponible')
-        db.insertarReserva('demo24','','Disponible')
-        db.insertarReserva('demo25','','Disponible')
-        db.insertarReserva('demo26','','Disponible')
-        db.insertarReserva('demo27','','Disponible')
-        db.insertarReserva('demo28','','Disponible')
-        db.insertarReserva('demo29','','Disponible')
-        db.insertarReserva('demo30','','Disponible')
-        db.insertarReserva('demo31','','Disponible')
-        db.insertarReserva('demo32','','Disponible')
-        db.insertarReserva('demo33','','Disponible')
-        db.insertarReserva('demo34','','Disponible')
-        db.insertarReserva('demo35','','Disponible')
-        db.insertarReserva('demo36','','Disponible')
-        db.insertarReserva('demo37','','Disponible')
-        db.insertarReserva('demo38','','Disponible')
-        db.insertarReserva('demo39','','Disponible')
-        db.insertarReserva('demo40','','Disponible')
-        db.insertarReserva('demo41','','Disponible')
-        db.insertarReserva('demo42','','Disponible')
-        db.insertarReserva('demo43','','Disponible')
-        db.insertarReserva('demo44','','Disponible')
-        db.insertarReserva('demo45','','Disponible')
-        db.insertarReserva('demo46','','Disponible')
-        db.insertarReserva('demo47','','Disponible')
-        db.insertarReserva('demo48','','Disponible')
-'''
