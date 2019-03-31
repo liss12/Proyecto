@@ -23,7 +23,7 @@ class DBHelper():
     def insertarlogin(self, _usuario, _contrasenia):
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         c = conn.cursor()
-        c.execute("INSERT INTO login VALUES("+_usuario+","+ _contrasenia+")")
+        c.execute("INSERT INTO login (usuario, contrasenia) VALUES("+_usuario+","+ _contrasenia+")")
         conn.commit()
         conn.close()
 
@@ -31,7 +31,7 @@ class DBHelper():
     def insertarReserva(self, _id, _usuario, _estado):
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         c = conn.cursor()
-        c.execute("INSERT INTO reserva VALUES (?, ?, ?)",[_id, _usuario, _estado])
+        c.execute("INSERT INTO reserva (id , usuario,estado )VALUES (?, ?, ?)",[_id, _usuario, _estado])
         conn.commit()
         conn.close()
 
