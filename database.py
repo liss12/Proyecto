@@ -64,10 +64,6 @@ class DBHelper():
     def quemada(self):
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         c = conn.cursor()
-        c.execute("DROP TABLE IF EXISTS reserva")
-        conn.commit()
-        c.execute("CREATE TABLE reserva(id text, usuario text, estado text)")
-        conn.commit()
         c.execute("INSERT INTO reserva VALUES ('demo1', '', 'Disponible')")
         c.execute("INSERT INTO reserva VALUES ('demo2', '', 'Disponible')")
         c.execute("INSERT INTO reserva VALUES ('demo3', '', 'Disponible')")
