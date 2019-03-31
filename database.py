@@ -1,8 +1,8 @@
 import psycopg2
-
+DATABASE_URL = 'postgres://xlnuwgypyqaamw:4f2dbb1b6727a40f0c900d91bb3e157d16c6ff5bc033267850dbd88dcbcd303e@ec2-54-247-85-251.eu-west-1.compute.amazonaws.com:5432/d7ol24ubggaeeh'
+   
 
 class DBHelper():
-    DATABASE_URL = 'postgres://xlnuwgypyqaamw:4f2dbb1b6727a40f0c900d91bb3e157d16c6ff5bc033267850dbd88dcbcd303e@ec2-54-247-85-251.eu-west-1.compute.amazonaws.com:5432/d7ol24ubggaeeh'
     def __init__(self):
         pass
     
