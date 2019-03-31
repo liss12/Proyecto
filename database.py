@@ -23,7 +23,7 @@ class DBHelper():
     def insertarlogin(self, _usuario, _contrasenia):
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         c = conn.cursor()
-        c.execute("INSERT INTO login (usuario, contrasenia) VALUES("+_usuario+","+ _contrasenia+")")
+        c.execute("INSERT INTO login (usuario, contrasenia) VALUES("+'_usuario'+","+ '_contrasenia'+")")
         conn.commit()
         conn.close()
 
