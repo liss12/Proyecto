@@ -1,6 +1,5 @@
 from flask import Flask
 from flask import render_template
-import MySQLdb
 from flask import request
 from database import DBHelper
 
