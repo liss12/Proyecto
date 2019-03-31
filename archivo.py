@@ -62,4 +62,4 @@ def test():
         
         return render_template("test.html", dict = diccionario)
 
-app.run(debug=True, port=8000)
+app.run(debug=False, port=5000)
