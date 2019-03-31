@@ -9,7 +9,7 @@ db = DBHelper()
 #db.crearTablalogin()
 #db.crearTablaReserva()
 #db.insertarlogin()
-db.quemada()
+#db.quemada()
 '''
 @app.route("/")
 def inicio():    
